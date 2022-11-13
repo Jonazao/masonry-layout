@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
-import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
 import CardMedia from '@mui/material/CardMedia';
@@ -39,7 +38,6 @@ export default function RecipeReviewCard({ itemRef, onHeightChange }) {
   }, [expanded]);
 
   return (
-    <Box>
       <Card ref={itemRef} sx={{ maxWidth: 345 }}>
         <CardHeader
           avatar={
@@ -117,6 +115,5 @@ export default function RecipeReviewCard({ itemRef, onHeightChange }) {
           </CardContent>
         </Collapse>
       </Card>
-    </Box>
   );
 }

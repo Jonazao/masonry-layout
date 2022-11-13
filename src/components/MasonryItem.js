@@ -1,13 +1,11 @@
-import React, { useState, useEffect, useLayoutEffect, useRef } from 'react';
-import Tile from './Tile';
+import React, { useState, useEffect, useRef } from 'react';
+import Box from '@mui/material/Box';
 import Card from './Card';
 
 export default function MasonryItem({ number }) {
   const defaultCardHeight = useRef(null);
-  const maxCardHeight = useRef(null);
   const itemRef = useRef(null);
   const [rowNumber, setRowNumber] = useState(0);
-  const [trigger, setTrigger] = useState(false);
 
   useEffect(() => {
     if (itemRef?.current?.offsetHeight) {
@@ -15,29 +13,30 @@ export default function MasonryItem({ number }) {
     }
   }, []);
 
-  useEffect(() => {
+  const handleHeightChange = () => {
     setTimeout(() => {
-      console.log(itemRef?.current?.getBoundingClientRect().height);
-      console.log(itemRef?.current?.offsetHeight);
       setRowNumber(
         Math.ceil(itemRef?.current?.offsetHeight / defaultCardHeight.current)
       );
+      //This is the transition time between the card being collapsed and expanded. Maybe there is a way to wait for the UI to fully render before gattering this info (Also this value is on the theme from the material UI)
     }, 500);
-  }, [trigger]);
-
-  const handleHeightChange = () => {
-    setTrigger(!trigger);
   };
+
   return (
     <article
-      
       style={{
         display: 'flex',
         placeSelf: 'strech',
         gridRow: `span ${rowNumber}`,
       }}
     >
-      <Card itemRef={itemRef} number={number} onHeightChange={handleHeightChange} />
+      <Box>
+        <Card
+          itemRef={itemRef}
+          number={number}
+          onHeightChange={handleHeightChange}
+        />
+      </Box>
     </article>
   );
 }
