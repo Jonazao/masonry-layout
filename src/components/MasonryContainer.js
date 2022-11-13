@@ -15,13 +15,9 @@ export default function MasonryContainer() {
         position: 'relative',
       }}
     >
-      {['One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven'].map(
-        (text, idx) => (
-          <MasonryItem key={`tile_idx_${idx}`} number={idx}>
-            {text}
-          </MasonryItem>
-        )
-      )}
+      {[1, 2, 3, 4, 5, 6, 7, 8].map((text, idx) => (
+        <MasonryItem key={`tile_idx_${idx}`} number={idx} />
+      ))}
     </Box>
   );
 }

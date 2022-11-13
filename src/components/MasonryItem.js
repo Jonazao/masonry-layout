@@ -1,8 +1,10 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useLayoutEffect, useRef } from 'react';
 import Tile from './Tile';
+import Card from './Card';
 
 export default function MasonryItem({ number }) {
   const defaultCardHeight = useRef(null);
+  const maxCardHeight = useRef(null);
   const itemRef = useRef(null);
   const [rowNumber, setRowNumber] = useState(0);
   const [trigger, setTrigger] = useState(false);
@@ -14,9 +16,13 @@ export default function MasonryItem({ number }) {
   }, []);
 
   useEffect(() => {
-    setRowNumber(
-      Math.ceil(itemRef?.current?.offsetHeight / defaultCardHeight.current)
-    );
+    setTimeout(() => {
+      console.log(itemRef?.current?.getBoundingClientRect().height);
+      console.log(itemRef?.current?.offsetHeight);
+      setRowNumber(
+        Math.ceil(itemRef?.current?.offsetHeight / defaultCardHeight.current)
+      );
+    }, 500);
   }, [trigger]);
 
   const handleHeightChange = () => {
@@ -24,17 +30,14 @@ export default function MasonryItem({ number }) {
   };
   return (
     <article
+      
       style={{
         display: 'flex',
         placeSelf: 'strech',
         gridRow: `span ${rowNumber}`,
       }}
     >
-      <Tile
-        itemRef={itemRef}
-        number={number}
-        onHeightChange={handleHeightChange}
-      />
+      <Card itemRef={itemRef} number={number} onHeightChange={handleHeightChange} />
     </article>
   );
 }
