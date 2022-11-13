@@ -14,6 +14,7 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
+import { useTheme } from '@mui/material/styles';
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -22,18 +23,21 @@ const ExpandMore = styled((props) => {
   transform: !expand ? 'rotate(0deg)' : 'rotate(180deg)',
   marginLeft: 'auto',
   transition: theme.transitions.create('transform', {
-    duration: theme.transitions.duration.shortest,
+    duration: theme.transitions.duration.short,
   }),
 }));
 
 export default function RecipeReviewCard({ itemRef, onHeightChange, title }) {
   const [expanded, setExpanded] = React.useState(false);
-
+  const theme = useTheme();
   const handleExpandClick = () => {
     setExpanded(!expanded);
-    onHeightChange();
+    setTimeout(() => {
+      onHeightChange();
+      //This is the transition time between the card being collapsed and expanded is 500ms. Maybe there is a way to wait for the UI to fully render before gattering this info (Also this value is on the theme from the material UI). theme.transitions.duration.short = 250ms
+    }, theme.transitions.duration.short * 2);
   };
-
+  console.log(theme.transitions.duration);
   return (
     <Card ref={itemRef} sx={{ maxWidth: 345 }}>
       <CardHeader

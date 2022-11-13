@@ -13,12 +13,10 @@ export default function MasonryItem({ children }) {
   }, []);
 
   const handleHeightChange = () => {
-    setTimeout(() => {
-      setRowNumber(
-        Math.ceil(itemRef?.current?.offsetHeight / defaultCardHeight.current)
-      );
-      //This is the transition time between the card being collapsed and expanded. Maybe there is a way to wait for the UI to fully render before gattering this info (Also this value is on the theme from the material UI)
-    }, 500);
+    console.log(itemRef?.current?.offsetHeight);
+    setRowNumber(
+      Math.ceil(itemRef?.current?.offsetHeight / defaultCardHeight.current)
+    );
   };
 
   if (children.length) {
