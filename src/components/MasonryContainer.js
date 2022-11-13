@@ -7,7 +7,7 @@ export default function MasonryContainer() {
   return (
     <Box
       sx={{
-        display: 'grid',
+        display: 'inline-grid',
         backgroundColor: 'gray',
         grid: 'auto-flow dense auto / 1fr 1fr',
         columnGap: '1rem',

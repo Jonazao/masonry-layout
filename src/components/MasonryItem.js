@@ -27,6 +27,7 @@ export default function MasonryItem({ number }) {
       style={{
         display: 'flex',
         placeSelf: 'strech',
+        justifyContent:'center',
         gridRow: `span ${rowNumber}`,
       }}
     >
