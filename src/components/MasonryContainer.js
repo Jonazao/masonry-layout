@@ -4,7 +4,7 @@ import MasonryItem from './MasonryItem';
 
 import Card from './Card';
 
-export default function MasonryContainer({ itemComponent, itemProps, item }) {
+export default function MasonryContainer() {
   return (
     <Box
       sx={{
