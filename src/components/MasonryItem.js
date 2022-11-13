@@ -1,8 +1,7 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, cloneElement } from 'react';
 import Box from '@mui/material/Box';
-import Card from './Card';
 
-export default function MasonryItem({ number }) {
+export default function MasonryItem({ children }) {
   const defaultCardHeight = useRef(null);
   const itemRef = useRef(null);
   const [rowNumber, setRowNumber] = useState(0);
@@ -22,21 +21,25 @@ export default function MasonryItem({ number }) {
     }, 500);
   };
 
+  if (children.length) {
+    throw new Error('Wrap the children inside a container element');
+  }
+
   return (
     <article
       style={{
         display: 'flex',
         placeSelf: 'strech',
-        justifyContent:'center',
+        justifyContent: 'center',
         gridRow: `span ${rowNumber}`,
       }}
     >
       <Box>
-        <Card
-          itemRef={itemRef}
-          number={number}
-          onHeightChange={handleHeightChange}
-        />
+        {cloneElement(children, {
+          ...children.props,
+          onHeightChange: handleHeightChange,
+          itemRef: itemRef,
+        })}
       </Box>
     </article>
   );

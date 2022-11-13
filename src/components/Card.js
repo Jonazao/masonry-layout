@@ -26,7 +26,7 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-export default function RecipeReviewCard({ itemRef, onHeightChange }) {
+export default function RecipeReviewCard({ itemRef, onHeightChange, title }) {
   const [expanded, setExpanded] = React.useState(false);
 
   const handleExpandClick = () => {
@@ -50,7 +50,7 @@ export default function RecipeReviewCard({ itemRef, onHeightChange }) {
               <MoreVertIcon />
             </IconButton>
           }
-          title="Shrimp and Chorizo Paella"
+          title={title}
           subheader="September 14, 2016"
         />
         <CardMedia

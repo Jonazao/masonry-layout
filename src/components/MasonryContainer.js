@@ -1,9 +1,10 @@
 import React from 'react';
+import Box from '@mui/material/Box';
 import MasonryItem from './MasonryItem';
 
-import Box from '@mui/material/Box';
+import Card from './Card';
 
-export default function MasonryContainer() {
+export default function MasonryContainer({ itemComponent, itemProps, item }) {
   return (
     <Box
       sx={{
@@ -15,8 +16,19 @@ export default function MasonryContainer() {
         position: 'relative',
       }}
     >
-      {[1, 2, 3, 4, 5, 6, 7, 8].map((text, idx) => (
-        <MasonryItem key={`tile_idx_${idx}`} number={idx} />
+      {[
+        'Magnificente Masonry',
+        'New UI layers by Jonas',
+        'Welcome to advanced React',
+        'Expand and have fun',
+        'Some cool items',
+        'Jonas is the best ;)',
+        'More does not mean better',
+        'Just go and do it',
+      ].map((text, idx) => (
+        <MasonryItem key={`tile_idx_${idx}`}>
+          <Card title={text} />
+        </MasonryItem>
       ))}
     </Box>
   );
